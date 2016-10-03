@@ -4,13 +4,15 @@
 <title>Hello AngularJS</title>
 <style type="text/css">
 [ng\:cloak], [ng-cloak], .ng-cloak {
-  display: none !important;
+	display: none !important;
 }
 </style>
 
 <!-- css dependencies -->
-<link href="bower/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="bower/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" type="text/css" />
+<link href="bower/bootstrap/dist/css/bootstrap.css" rel="stylesheet"
+	type="text/css" />
+<link href="bower/angular-bootstrap/ui-bootstrap-csp.css"
+	rel="stylesheet" type="text/css" />
 
 <!-- jquery / bootstrap -->
 <script src="bower/jquery/dist/jquery.js"></script>
@@ -26,16 +28,22 @@
 
 <!-- Controllers -->
 <script src="js/controller/homeController.js"></script>
+<script src="js/controller/navigationController.js"></script>
+
+<!-- Services -->
+<script src="js/service/authService.js"></script>
 
 </head>
 
 <body ng-app="hello">
-  <div class="container">
-    <div class="alert alert-success">Greeting</div>
-    <div ng-controller="HomeCtrl" ng-cloak class="ng-cloak">
-      <p>The ID is <i>{{greeting.id}}</i></p>
-      <p>The content is <i>{{greeting.content}}</i></p>
-    </div>
-  </div>
+
+	<div ng-controller="NavigationCtrl" class="container">
+		<ul class="nav nav-pills" role="tablist">
+			<li ng-class="{'active' : currentPage === 'home'}"><a href="#/">home</a></li>
+			<li ng-class="{'active' : currentPage === 'login'}"><a href="#/login">login</a></li>
+			<li ng-show="loggedIn"><a href="" ng-click="logout()">logout</a></li>
+		</ul>
+	</div>
+	<div ng-view class="container"></div>
 </body>
 </html>

@@ -1,7 +1,10 @@
 angular.module('hello')
-        .controller('HomeCtrl', ["$rootScope", "$scope", function ($rootScope, $scope) {
-                $scope.greeting = {
-                	id : 123,
-                	content : "This is a greeting message"
-                };
-            }]);
+        .controller('HomeCtrl', ["$rootScope", "$scope", "$http", function ($rootScope, $scope, $http) {
+        	
+        	$rootScope.currentPage = 'home';
+        	
+        	$http.get('api/resource').then(function(res){
+                $scope.greeting = res.data;	
+        	})
+        	
+}]);
