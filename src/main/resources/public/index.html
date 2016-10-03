@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<title>Hello AngularJS</title>
+<style type="text/css">
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+</style>
+
+<!-- css dependencies -->
+<link href="bower/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="bower/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" type="text/css" />
+
+<!-- jquery / bootstrap -->
+<script src="bower/jquery/dist/jquery.js"></script>
+<script src="bower/bootstrap/dist/js/bootstrap.js"></script>
+
+<!-- Angular dependencies -->
+<script src="bower/angular/angular.js"></script>
+<script src="bower/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower/angular-route/angular-route.js"></script>
+
+<!-- Angular -->
+<script src="js/app.js"></script>
+
+<!-- Controllers -->
+<script src="js/controller/homeController.js"></script>
+
+</head>
+
+<body ng-app="hello">
+  <div class="container">
+    <div class="alert alert-success">Greeting</div>
+    <div ng-controller="HomeCtrl" ng-cloak class="ng-cloak">
+      <p>The ID is <i>{{greeting.id}}</i></p>
+      <p>The content is <i>{{greeting.content}}</i></p>
+    </div>
+  </div>
+</body>
+</html>
