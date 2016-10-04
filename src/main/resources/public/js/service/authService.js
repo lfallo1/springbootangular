@@ -6,18 +6,35 @@
 
 	var user = undefined;
 	
-	service.authenticatedAsync = function(restrict){
+	service.getUser = function(){
+		return user;
+	};
+	
+	service.restrictIfAuthAsync = function(){
 		var deferred = $q.defer();
 		
-		//if restrict flag, then reject if the logic is true (i.e., used for restricting to a login page)
-		if(restrict){
-			user ? deferred.reject() : deferred.resolve();
-		} else{
-			user ? deferred.resolve(user) : deferred.reject();
-		}
+		service.checkSession().then(function(){
+			$location.path('/');
+			deferred.reject();
+		}, function(err){
+			deferred.resolve();
+		});
 		
 		return deferred.promise;
 	};
+	
+	service.checkSession = function(){
+		var deferred = $q.defer();
+		$http.get('user').then(function(res){
+			$rootScope.loggedIn = true;
+			user = res.data;
+			deferred.resolve();
+		}, function(err){
+			user = undefined;
+			deferred.reject();
+		})
+		return deferred.promise;
+	}
 	
 	service.restrictAuthenticatedAsync = function(){
 		var deferred = $q.defer();
@@ -28,11 +45,17 @@
   	  service.authenticate = function(credentials) {
 
   		var deferred = $q.defer();
-  		  
-  	    var headers = credentials ? {authorization : "Basic "
-  	        + btoa(credentials.username + ":" + credentials.password)
-  	    } : {};
-
+  		
+        //set auth header
+	    var headers = {
+	    		authorization : "Basic " + btoa(credentials.username + ":" + credentials.password)
+	    };
+	    
+	    var payload = {
+	    	username : credentials.username,
+	    	password : credentials.password
+	    };
+  		
   	    $http.get('user', {headers : headers}).then(function(response) {
   	      if (response.data.name) {
   	    	$rootScope.loggedIn = true;

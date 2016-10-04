@@ -13,7 +13,7 @@ angular.module('hello', ['ngRoute'])
 	                controller : 'NavigationCtrl',
 	                resolve : {
 	                	allow : function(AuthService){
-	                		return AuthService.authenticatedAsync(true);
+	                		return AuthService.restrictIfAuthAsync();
 		                }
 	                }
 	            }).
@@ -25,5 +25,7 @@ angular.module('hello', ['ngRoute'])
         	
         }])
         .run(['$rootScope', 'AuthService', function ($rootScope, AuthService) {
-
+        	
+        		AuthService.checkSession();
+        		
             }]);

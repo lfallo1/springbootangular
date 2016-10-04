@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/resource")
-public class GreetingController {
+public class GreetingApiController {
 
 	@RequestMapping(method=RequestMethod.GET)
 	public Map<String, Object> home() {
