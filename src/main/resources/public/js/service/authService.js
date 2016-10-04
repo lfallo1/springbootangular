@@ -9,6 +9,19 @@
 	service.getUser = function(){
 		return user;
 	};
+
+	service.restrictIfNoAuthAsync = function(){
+		var deferred = $q.defer();
+		
+		service.checkSession().then(function(){
+			deferred.resolve();
+		}, function(err){
+			$location.path('/');
+			deferred.reject();
+		});
+		
+		return deferred.promise;
+	};
 	
 	service.restrictIfAuthAsync = function(){
 		var deferred = $q.defer();
