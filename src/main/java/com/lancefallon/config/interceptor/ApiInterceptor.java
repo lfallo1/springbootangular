@@ -47,6 +47,7 @@ public class ApiInterceptor implements HandlerInterceptor {
 			throw new InvalidCredentialsException(new CustomErrorMessage("notloggedin", "You are not authorized to view this page"));
 		}
 		
+
 		return true;
 	}
 

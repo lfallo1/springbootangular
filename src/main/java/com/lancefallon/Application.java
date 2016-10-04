@@ -8,10 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.lancefallon.config.SecurityConfiguration;
 
 @SpringBootApplication
-public class UiApplication extends WebMvcConfigurerAdapter {
+public class Application extends WebMvcConfigurerAdapter {
 
 	public static void main(String[] args) {
-		SpringApplication.run(new Class[]{UiApplication.class, SecurityConfiguration.class}, args);
+		SpringApplication.run(new Class[]{Application.class, SecurityConfiguration.class}, args);
 	}
 	
 	@Override

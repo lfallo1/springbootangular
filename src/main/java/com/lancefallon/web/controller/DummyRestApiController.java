@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lancefallon.config.auth.User;
+import com.lancefallon.config.ActiveUser;
 
 @RestController
 @RequestMapping("/auth")
@@ -29,7 +29,7 @@ public class DummyRestApiController {
 	@PreAuthorize("hasRole('ROLE_USER') and @authService.isSelf(#principal, #username)")
 	public ResponseEntity<DummyDto> testGET(@PathVariable("username") String username, UsernamePasswordAuthenticationToken principal) {
 		DummyDto dummy = new DummyDto();
-		dummy.setName("Why hello, " + ((User)principal.getPrincipal()).getUsername());
+		dummy.setName("Why hello, " + ((ActiveUser)principal.getPrincipal()).getUsername());
 		dummy.setCode(UUID.randomUUID());
 		return new ResponseEntity<DummyDto>(dummy, HttpStatus.OK);
 	}

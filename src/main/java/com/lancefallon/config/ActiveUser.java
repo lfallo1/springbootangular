@@ -1,11 +1,11 @@
-package com.lancefallon.config.auth;
+package com.lancefallon.config;
 
-public class User {
+public class ActiveUser {
 
 	private String username;
 	private String password;
 	
-	public User(){}
+	public ActiveUser(){}
 
 	public String getUsername() {
 		return username;

@@ -12,6 +12,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import com.lancefallon.config.ActiveUser;
+
 @Component
 public class RestAuthenticationProvider implements AuthenticationProvider {
 
@@ -23,7 +25,7 @@ public class RestAuthenticationProvider implements AuthenticationProvider {
     	if(!username.equals("user") || !password.equals("user")){
     		throw new BadCredentialsException("invalid credentials");
     	}
-    	User user = new User();
+    	ActiveUser user = new ActiveUser();
     	user.setUsername(username);
     	List<GrantedAuthority> grantedAuths = new ArrayList<>();
     	
