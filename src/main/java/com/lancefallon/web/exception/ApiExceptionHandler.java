@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ApiExceptionHandler {
 	@ExceptionHandler(InvalidCredentialsException.class)
-    ResponseEntity<String> handleInvalidCredentialsException(InvalidCredentialsException ex) throws IOException {
-        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.FORBIDDEN);
+    ResponseEntity<CustomErrorMessage> handleInvalidCredentialsException(InvalidCredentialsException ex) throws IOException {
+        return new ResponseEntity<CustomErrorMessage>(ex.getError(), HttpStatus.FORBIDDEN);
     }
 }
